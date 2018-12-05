@@ -2,9 +2,10 @@ package com.simsekonline.rest.webservices.restfulwebservices.user;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class UserDaoService {
@@ -32,6 +33,18 @@ public class UserDaoService {
 		for (User user : users) {
 			if (user.getId() == id)
 				return user;
+		}
+		return null;
+	}
+	
+	public User deleteByID(int id) {
+		Iterator<User> iterator=users.iterator();
+		while(iterator.hasNext()) {
+			User user=iterator.next();
+			if(user.getId()==id) {
+				iterator.remove();
+				return user;
+			}
 		}
 		return null;
 	}
